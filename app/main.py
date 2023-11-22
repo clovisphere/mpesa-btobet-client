@@ -30,6 +30,6 @@ def ping(db: Session = Depends(get_db_session)):
     return db
 
 
-app.add_api_route("/health", health([ping]))  # how very basic ^health check 🌡️^ 😽
+app.add_api_route("/health", health([ping]))  # our very basic ^health check 🌡️^ 😽
 
 app.include_router(api_router, prefix=settings.API_VERSION)
