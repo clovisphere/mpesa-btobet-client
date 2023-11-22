@@ -1,0 +1,5 @@
+{
+    "ResultCode": 0,
+    "ResultDesc": "The service was accepted successfully",
+    "ThirdPartyTransID": "{{randomValue type='UUID'}}"
+}

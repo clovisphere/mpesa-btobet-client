@@ -1,0 +1,13 @@
+{
+    "request": {
+        "method": "POST",
+        "url": "/token.php"
+    },
+    "response": {
+        "status": 200,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "bodyFileName": "chezacash_sms_access_token_response.json"
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "request": {
+        "method": "POST",
+        "url": "/Services/GeneralPayment.svc/DepositProcess"
+    },
+    "response": {
+        "status": 200,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "bodyFileName": "btobet_deposit_process_response.json"
+    }
+}

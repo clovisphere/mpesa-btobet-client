@@ -1,0 +1,4 @@
+{
+  "StatusCode": "{{pickRandom '0' '1' '3201'}}",
+  "StatusMessage": "Request received"
+}

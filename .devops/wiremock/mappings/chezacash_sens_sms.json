@@ -1,0 +1,13 @@
+{
+    "request": {
+        "method": "POST",
+        "url": "/sendsms.php"
+    },
+    "response": {
+        "status": 200,
+        "headers": {
+            "Content-Type": "application/json"
+        },
+        "bodyFileName": "chezacash_send_sms_response.json"
+    }
+}
