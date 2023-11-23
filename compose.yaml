@@ -2,6 +2,8 @@ services:
   web:
     build:
       context: .
+      args:
+        ENVIRONMENT: development
     volumes:
       - .:/code
     ports:
