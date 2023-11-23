@@ -16,6 +16,8 @@ FROM python:${PYTHON_VERSION}-alpine3.18
 
 WORKDIR /code
 
+ARG ENVIRONMENT
+
 # Prevents Python from writing pyc files.
 ENV PYTHONDONTWRITEBYTECODE=1
 
@@ -54,4 +56,4 @@ USER appuser
 COPY . .
 
 # Run the application
-ENTRYPOINT /bin/sh /code/entrypoint.sh
+ENTRYPOINT /bin/sh /code/entrypoint.sh $ENVIRONMENT
