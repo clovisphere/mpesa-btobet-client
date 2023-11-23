@@ -1,0 +1,10 @@
+services:
+  web:
+    build:
+      context: .
+    volumes:
+      - .:/code
+    ports:
+      - "9000:8000"
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
