@@ -5,9 +5,11 @@ A simple wrapper (API) that sits between [MPESA](https://www.safaricom.co.ke/per
 
 TODO:
 
-- [ ] B2B
-- [ ] B2C
-- [x] C2B (partially, the broker has been implemented)
+- [ ] B2B flow
+- [ ] B2C flow
+- [ ] C2B (partially, the broker has been implemented)
+- [ ] Unit Tests
+- [ ] CI/CD (Github Actions)
 
 ## Usage
 
@@ -76,7 +78,7 @@ make build-start-container-dev
 
 Test it out:
 
-1. [http:localhost:8088/docs](http:localhost:8088/docs)
+[http:localhost:8088/docs](http:localhost:8088/docs)
 
 To bring down the containers and volumes down once done:
 
@@ -88,8 +90,9 @@ You can read and learn about Makefiles [here](https://opensource.com/article/18/
 
 ### Production
 
-- [ ] docker-compose.prod.yml
-
+```bash
+make build-start-container-prod DATABASE_URL=url_to_your_prod_db
+```
 
 ## Author
 
