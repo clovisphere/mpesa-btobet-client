@@ -18,7 +18,7 @@ ifeq ($(DB),)
 else
 	@echo "About to spawn a ${MPESA_BTOBET_CLIENT} containerized service (PROD MODE) 🤭"
 	@echo "PRODUCTION DATABASE 🗄️  ~> ${DATABASE_URL}"
-	DATABASE_URL=${DATABASE_URL} docker compose -f compose-prod.yaml up -d --build --build-arg ENVIRONMENT=production
+	DATABASE_URL=${DATABASE_URL} docker compose -f compose-prod.yaml up -d --build
 endif
 
 stop-container:
