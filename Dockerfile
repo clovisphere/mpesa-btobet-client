@@ -11,12 +11,17 @@ COPY ./pyproject.toml ./poetry.lock* /tmp/
 
 RUN poetry export -f requirements.txt --output requirements.txt --without-hashes
 
+
 # Deploy application to a lean image
 FROM python:${PYTHON_VERSION}-alpine3.18
 
 WORKDIR /code
 
+# Default environment (read from .yaml file)
 ARG ENVIRONMENT
+
+# Assign default environemnt to an ENV variable
+ENV ENVIRONMENT=$ENVIRONMENT
 
 # Prevents Python from writing pyc files.
 ENV PYTHONDONTWRITEBYTECODE=1
@@ -46,7 +51,7 @@ RUN apk update && apk add musl-dev curl
 # Leverage a bind mount to requirements.txt to avoid having to copy them into
 # into this layer.
 RUN --mount=type=cache,target=/root/.cache/pip \
-    python -m pip install -U pip psycopg2-binary && \
+    python -m pip install -U pip psycopg2-binary pymysql && \
     python -m pip install -r /code/requirements.txt
 
 # Switch to the non-privileged user to run the application.
