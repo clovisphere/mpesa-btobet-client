@@ -4,8 +4,6 @@ services:
       context: .
       args:
         ENVIRONMENT: production
-    volumes:
-      - .:/code
     ports:
       - "9000:8000"
     environment:
