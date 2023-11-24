@@ -8,7 +8,7 @@ local-dev:
 	uvicorn app.main:app --host 127.0.0.1 --port 8088 --log-level debug --env-file .env.dev --reload
 
 build-start-container-dev:
-	@echo "Build images then create and containers (DEV MODE)"
+	@echo "Build images then create and start containers (DEV MODE)"
 	docker compose up -d --build
 
 build-start-container-prod:
