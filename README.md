@@ -78,7 +78,8 @@ make build-start-container-dev
 
 Test it out:
 
-[http:localhost:8088/docs](http:localhost:8088/docs)
+1. [/health](http:localhost:8088/health)
+2. [swagger ui](http:localhost:8088/docs)
 
 To bring down the containers and volumes down once done:
 
