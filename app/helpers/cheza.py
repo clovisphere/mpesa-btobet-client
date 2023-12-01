@@ -16,8 +16,10 @@ class Cheza:
             "message": kwargs.get("message", "REG"),
             "requestTimestamp": time.time_ns(),
         }
-        with httpx.Client(headers={"Content-Type": "application/json"},
-            verify=bool(int(os.environ.get("VERIFY_SSL", 0)))) as client:
+        with httpx.Client(
+            headers={"Content-Type": "application/json"},
+            verify=bool(int(os.environ.get("VERIFY_SSL", 0)))
+        ) as client:
             response = (
                 client.post(
                     url=os.environ.get("CHEZACASH_GAME_SMS_REGISTRATION_URL", ""),
