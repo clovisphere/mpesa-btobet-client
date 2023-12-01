@@ -1,3 +1,4 @@
+from enum import verify
 import os
 import time
 
@@ -15,7 +16,8 @@ class Cheza:
             "message": kwargs.get("message", "REG"),
             "requestTimestamp": time.time_ns(),
         }
-        with httpx.Client(headers={"Content-Type": "application/json"}) as client:
+        with httpx.Client(headers={"Content-Type": "application/json"},
+            verify=bool(int(os.environ.get("VERIFY_SSL", 0)))) as client:
             response = (
                 client.post(
                     url=os.environ.get("CHEZACASH_GAME_SMS_REGISTRATION_URL", ""),
@@ -39,8 +41,9 @@ class Cheza:
             "request_id": kwargs.get("mpesa_ref_number", ""),
         }
         with httpx.Client(
-            base_url=os.environ.get("CHEZACASH_SMS_API_BASE_URL", ""), headers=headers
-        ) as client:
+            base_url=os.environ.get("CHEZACASH_SMS_API_BASE_URL", ""),
+            headers=headers,
+            verify=bool(int(os.environ.get("VERIFY_SSL", 0)))) as client:
             response = (
                 client.post(
                     "/sendsms.php", json=payload, timeout=settings.DEFAULT_TIMEOUT
@@ -61,7 +64,10 @@ class Cheza:
                 "grant_type": os.environ.get("CHEZACASH_SMS_GRANT_TYPE"),
             }
             token = httpx.post(
-                url, json=payload, timeout=settings.DEFAULT_TIMEOUT
+                url,
+                json=payload,
+                timeout=settings.DEFAULT_TIMEOUT,
+                verify=bool(int(os.environ.get("VERIFY_SSL", 0)))
             ).json()["access_token"]
         except httpx.HTTPError:
             pass
