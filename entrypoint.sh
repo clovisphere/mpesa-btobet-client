@@ -20,5 +20,5 @@ else
     eval ${RUN_MIGRATION}
 
     echo "starting the web-api"
-    uvicorn app.main:app --reload --host 0.0.0.0 --port 8000 --log-level debug --env-file .env.dev
+    uvicorn app.main:app --reload --host 0.0.0.0 --port 8000 --log-level debug --env-file .env
 fi
