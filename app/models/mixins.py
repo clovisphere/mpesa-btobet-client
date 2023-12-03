@@ -24,7 +24,7 @@ class Timestamp:
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )
 
-    update_on: Mapped[datetime.datetime] = mapped_column(
+    updated_on: Mapped[datetime.datetime] = mapped_column(
         DateTime(timezone=True),
         server_default=func.now(),
         onupdate=func.now(),
