@@ -8,6 +8,7 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     PROJECT_NAME: str = os.getenv("PROJECT_NAME", "Dummy API")
     API_VERSION: str = "/api/v1"
+    DATABASE_URL: str = os.environ.get("DATABASE_URL", "sqlite:///./demo.db")
     SECRET_KEY: str = secrets.token_urlsafe(32)
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 60 * 24 * 8
     BACKEND_CORS_ORIGINS: list[AnyHttpUrl] = []

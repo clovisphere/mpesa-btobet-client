@@ -36,7 +36,11 @@ from app.template.cheza_sms import (
 router = APIRouter()
 
 
-@router.post("/validation")
+class CustomXMLReponse(Response):
+    media_type = "application/xml"
+
+
+@router.post("/validation", response_class=CustomXMLReponse, status_code=status.HTTP_202_ACCEPTED)
 def validate(request: Request, content_type: str | None = Header(None)):
     """Validate details of a payment before accepting it."""
     if content_type in settings.XML_ALLOWED_CONTENT_TYPE:
@@ -45,18 +49,14 @@ def validate(request: Request, content_type: str | None = Header(None)):
             RESULT_DESCRIPTION="Success",
             THIRD_PARTY_TRANSACTION_ID=time.time_ns(),
         )
-        return Response(
-            content=response,
-            status_code=status.HTTP_202_ACCEPTED,
-            media_type=content_type,
-        )
+        return CustomXMLReponse(content=response)
     logger.error("could not process the request 😪")
     raise HTTPException(
         status_code=status.HTTP_400_BAD_REQUEST, detail="request cannot be processed."
     )
 
 
-@router.post("/confirmation")
+@router.post("/confirmation", response_class=CustomXMLReponse, status_code=status.HTTP_201_CREATED)
 async def confirm(
     request: Request,
     background_tasks: BackgroundTasks,
@@ -64,9 +64,8 @@ async def confirm(
     content_type: str | None = Header(None),
 ):
     """Accept payments successfully processed on Safaricom's end."""
-    # message and status to return when we have a failure:-)
+    # message to return when we have a failure:-)
     message: str = settings.BROKER_FAILURE_MESSAGE
-    http_code: int = status.HTTP_400_BAD_REQUEST
 
     if content_type in settings.XML_ALLOWED_CONTENT_TYPE:
         body: bytes = await request.body()
@@ -76,16 +75,15 @@ async def confirm(
             message = settings.BROKER_SUCCESS_MESSAGE.format(
                 TRANSACTION_ID=req["TransID"]
             )
-            http_code = status.HTTP_201_CREATED
             background_tasks.add_task(
-                process_confirm_request, payment_details=req, session=db
+                process_confirm_request,
+                payment_details=req,
+                session=db
             )
         response = BROKER_CONFIRMATION_RESPONSE_TEMPLATE.format(MESSAGE=message)
-        return Response(
-            content=response, status_code=http_code, media_type=content_type
-        )
+        return CustomXMLReponse(content=response)
     logger.error("could not process the request 😪 ")
-    raise HTTPException(status_code=http_code, detail=message)
+    raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=message)
 
 
 async def process_confirm_request(
