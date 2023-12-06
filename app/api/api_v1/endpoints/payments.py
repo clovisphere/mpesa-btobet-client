@@ -259,7 +259,7 @@ async def handler(fn: Callable, mpesa_ref_number: str, payload: dict) -> None:
     """Used to run tasks that are not THAT IMPORTANT 🤪"""
     try:
         logger.info(f"[{mpesa_ref_number}] | " f"invoking '{fn.__name__}'... ")
-        response = fn(**payload)  # func can either be `register_customer` or `send_sms`
+        response = fn(**payload)  # fn can either be `register_customer` or `send_sms`
         logger.info(
             f"[{mpesa_ref_number}] | "
             f"response from '{fn.__name__}', if any 😜 ~> {response} "
