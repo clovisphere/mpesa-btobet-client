@@ -220,7 +220,7 @@ async def fetch_msisdn_from_profile(
     return profile.msisdn, True  # we have a profile with this hashed MSISDN
 
 async def create_new_profile(payment_details: dict[str, str], session: Session) -> None:
-    logger.error(f"[{payment_details['TransID']}] | creating a profile for (hashed) MSISDN ")
+    logger.info(f"[{payment_details['TransID']}] | creating a profile for (hashed) MSISDN ")
 
     profile = ProfileCreate(
         msisdn=payment_details["BillRefNumber"],
