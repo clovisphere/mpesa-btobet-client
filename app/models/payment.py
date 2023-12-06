@@ -1,6 +1,6 @@
 import decimal
 
-from sqlalchemy import Enum, Numeric, String, Text
+from sqlalchemy import Enum, ForeignKey, Numeric, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.db import Base
@@ -18,6 +18,8 @@ class Payment(Timestamp, Base):
     mpesa_ref_number: Mapped[str] = mapped_column(
         String(30), unique=True, index=True, nullable=False
     )
-    # comes as `Bill Reference Number`
-    mobile_number: Mapped[str] = mapped_column(String(30))
-    hashed_mobile_number: Mapped[str] = mapped_column(Text, nullable=True)
+    msisdn: Mapped[str] = mapped_column(String(15), nullable=True)
+    comment: Mapped[str] = mapped_column(Text, nullable=True)
+
+    # relationship / foreign key 🔑
+    profile_id: Mapped[int] = mapped_column(ForeignKey("profile.id"), nullable=True)

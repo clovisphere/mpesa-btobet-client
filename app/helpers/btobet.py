@@ -27,8 +27,6 @@ class BTOBET:
             mpesa_ref_number=obj["TransID"],
             amount=decimal.Decimal(obj["TransAmount"]),
             org_account_balance=decimal.Decimal(obj["OrgAccountBalance"]),
-            mobile_number=Utility.rewrite_mobile_number(obj["BillRefNumber"]),
-            hashed_mobile_number=obj["MSISDN"],
         )
 
     @staticmethod
@@ -38,7 +36,7 @@ class BTOBET:
             "ClientID": os.getenv("BTOBET_API_CLIENT_ID"),
             "PaymentMethodID": os.getenv("BTOBET_API_PAYMENT_METHOD_ID"),
             "Amount": str(int(payment.amount)),
-            "Username": f"0{payment.mobile_number[3:]}",
+            "Username": f"0{payment.msisdn[3:]}",
             "Email": None,
             "UserID": None,
             "Currency": os.getenv("CURRENCY"),

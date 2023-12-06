@@ -11,7 +11,7 @@ from sqlalchemy.sql import func
 class Status(enum.StrEnum):
     # GENERIC
     PENDING = "PENDING"
-    CLIENT_ERROR = "CLIENT_ERROR (check logs!!!)"
+    INTERNAL_ERROR = "INTERNAL_ERROR"
     # BTOBET STATUSES
     ACCEPTED_BY_BTOBET = "ACCEPTED_BY_BTOBET"
     REJECTED_BY_BTOBET = "REJECTED_BY_BTOBET"

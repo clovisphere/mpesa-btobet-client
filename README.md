@@ -7,9 +7,9 @@ TODO:
 
 - [ ] B2B flow
 - [ ] B2C flow
-- [ ] C2B (partially, the broker has been implemented)
+- [ ] C2B (partially, the **Broker** has been implemented)
 - [ ] Unit Tests
-- [ ] CI/CD (Github Actions)
+- [ ] CI/CD (Github Actions or/and GitLab CI)
 
 ## Usage
 
@@ -30,6 +30,14 @@ cd mpesa-btobet-client
 poetry install
 export PYTHONDONTWRITEBYTECODE=1  # you don't have to do this:-)
 export DATABASE_URL=sqlite:///./demo.db
+```
+
+If you are using the [zed](https://zed.dev/) code editor, please add the below to [./pyproject.toml](pyproject.toml):
+
+```toml
+[tool.pyright]
+venvPath = ""  # absolute path to your `virtualenvs` folder
+venv = ""      # venv name
 ```
 
 Setup the database (fresh start, with no revision):
@@ -80,6 +88,18 @@ Test it out:
 
 1. [/health](http:localhost:8088/health)
 2. [swagger ui](http:localhost:8088/docs)
+
+with [httpie](https://httpie.io/):
+
+```http :8088/health```
+
+you'd get:
+
+```json
+{
+    "status": "healthy 😊"
+}
+```
 
 To bring down the containers and volumes down once done:
 

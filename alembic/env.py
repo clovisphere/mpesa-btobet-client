@@ -8,6 +8,7 @@ from app.db import Base  # noqa
 
 # add all other tables below
 from app.models.payment import Payment  # noqa
+from app.models.profile import Profile  # noqa
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

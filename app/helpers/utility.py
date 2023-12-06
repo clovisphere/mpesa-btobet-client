@@ -1,5 +1,6 @@
 import re
 import xml.etree.ElementTree as ET
+from hashlib import sha256
 from typing import Any
 
 
@@ -18,6 +19,10 @@ class Utility:
         if metadata:
             result.update({"KYCInfo": metadata})  # TODO: get fullname:(
         return result
+
+    @staticmethod
+    def hash_mobile_number(mobile_number: str) -> str:
+        return sha256(mobile_number.encode("utf-8")).hexdigest()
 
     @staticmethod
     def validate_mobile_number(mobile_number: str) -> re.Match[str] | None:

@@ -11,8 +11,9 @@ class PaymentBase(BaseModel):
     mpesa_ref_number: str
     amount: decimal.Decimal
     org_account_balance: decimal.Decimal
-    mobile_number: str
-    hashed_mobile_number: str | None = None
+    msisdn: str = ""
+    comment: str = ""
+    profile_id: int | None = None
 
 
 class PaymentCreate(PaymentBase):
