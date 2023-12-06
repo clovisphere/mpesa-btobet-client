@@ -23,7 +23,7 @@ def upgrade() -> None:
     op.create_table('profile',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('msisdn', sa.String(length=15), nullable=False),
-    sa.Column('hashed_msisdn', sa.Text(), nullable=False),
+    sa.Column('hashed_msisdn', sa.String(length=255), nullable=False),
     sa.Column('created_on', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=False),
     sa.Column('updated_on', sa.DateTime(timezone=True), server_default=sa.text('(CURRENT_TIMESTAMP)'), nullable=False),
     sa.PrimaryKeyConstraint('id'),

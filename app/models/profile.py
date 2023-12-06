@@ -9,7 +9,7 @@ from app.models.payment import Payment
 class Profile(Timestamp, Base):
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
     msisdn: Mapped[str] = mapped_column(String(15), nullable=False, index=True)
-    hashed_msisdn: Mapped[str] = mapped_column(Text, nullable=False, index=True)
+    hashed_msisdn: Mapped[str] = mapped_column(String(255), nullable=False, index=True)
 
     # one-to-many relationship(s) 😊
     payments: Mapped[list["Payment"]] = relationship(backref="profile")
