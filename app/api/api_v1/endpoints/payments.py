@@ -264,5 +264,5 @@ async def handler(fn: Callable, mpesa_ref_number: str, payload: dict) -> None:
             f"[{mpesa_ref_number}] | "
             f"response from '{fn.__name__}', if any 😜 ~> {response} "
         )
-    except httpx.HTTPError as e:
+    except Exception as e:
         logger.error(f"[{mpesa_ref_number}] | an exception occurred: {e} ")
