@@ -219,7 +219,7 @@ async def fetch_msisdn_from_profile(
         )
         return Utility.rewrite_mobile_number(payment_details["BillRefNumber"]), False
     logger.info(f"[{payment_details['TransID']}] the (hashed) MSISDN is known to us 👏🏽 ")
-    return profile.msisdn, True  # we have a profile with this hashed MSISDN
+    return Utility.rewrite_mobile_number(profile.msisdn), True  # we have a profile with this hashed MSISDN
 
 async def create_new_profile(payment_details: dict[str, str], session: Session) -> None:
     logger.info(f"[{payment_details['TransID']}] | creating a profile for (hashed) MSISDN ")
