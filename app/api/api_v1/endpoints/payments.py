@@ -1,5 +1,5 @@
 import os
-import time
+from datetime import datetime
 from typing import Callable
 
 import httpx
@@ -50,7 +50,7 @@ def validate(request: Request, content_type: str | None = Header(None)):
         response: str = BROKER_VALIDATION_RESPONSE_TEMPLATE.format(
             RESULT_CODE=0,
             RESULT_DESCRIPTION="Success",
-            THIRD_PARTY_TRANSACTION_ID=time.time_ns(),
+            THIRD_PARTY_TRANSACTION_ID=datetime.utcnow().strftime("%Y%m%d%H%M%S.%f")[:-3],
         )
         return CustomXMLReponse(content=response)
     logger.error("could not process the request 😪")

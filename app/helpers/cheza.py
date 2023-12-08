@@ -1,6 +1,5 @@
-from enum import verify
 import os
-import time
+from datetime import datetime
 
 import httpx
 
@@ -14,7 +13,7 @@ class Cheza:
             "msisdn": kwargs.get("phone_number", ""),
             "linkId": kwargs.get("request_id", ""),
             "message": kwargs.get("message", "REG"),
-            "requestTimestamp": time.time_ns(),
+            "requestTimestamp": datetime.utcnow().strftime("%Y%m%d%H%M%S.%f")[:-3],
         }
         with httpx.Client(
             headers={"Content-Type": "application/json"},
