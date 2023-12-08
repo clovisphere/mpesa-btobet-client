@@ -134,6 +134,8 @@ async def process_confirm_request(payment_details: dict[str, str], session: Sess
     try:
         logger.info(f"[{payment.mpesa_ref_number}] | building (confirmation) payload ")
         payload = BTOBET.build_broker_deposit_payload(payment)
+        logger.debug(f"[{payment.mpesa_ref_number}] | using payload={payload}")
+
         endpoint = os.environ.get("BTOBET_DEPOSIT_PROCESS_URL", "")
         logger.info(
             f"[{payment.mpesa_ref_number}] | "
