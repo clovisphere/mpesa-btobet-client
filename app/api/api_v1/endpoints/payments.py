@@ -174,7 +174,7 @@ async def process_confirm_request(payment_details: dict[str, str], session: Sess
         logger.error(f"[{payment.mpesa_ref_number}] | KeyError: {e} ")
         payment.status = Status.INTERNAL_ERROR
         payment.comment = f"Error: {e}"
-    except httpx.HTTPError as e:
+    except (httpx.HTTPError, Exception) as e:
         logger.error(f"[{payment.mpesa_ref_number}] | an exception occurred: {e} ")
         payment.status = Status.UNKNOWN_BTOBET_STATUS
         payment.comment = "Error: we are unable to call/hit BtoBET 😪"
