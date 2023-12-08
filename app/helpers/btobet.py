@@ -36,7 +36,7 @@ class BTOBET:
             "ClientID": os.getenv("BTOBET_API_CLIENT_ID"),
             "PaymentMethodID": os.getenv("BTOBET_API_PAYMENT_METHOD_ID"),
             "Amount": str(int(payment.amount)),
-            "Username": f"0{payment.msisdn[3:]}",
+            "Username": payment.msisdn,
             "Email": None,
             "UserID": None,
             "Currency": os.getenv("CURRENCY"),
