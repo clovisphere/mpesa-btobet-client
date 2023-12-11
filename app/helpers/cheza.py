@@ -39,7 +39,7 @@ class Cheza:
         payload = {
             "phone": kwargs.get("phone_number", ""),
             "message": kwargs.get("message", ""),
-            "request_id": kwargs.get("mpesa_ref_number", ""),
+            "requestId": kwargs.get("mpesa_ref_number", ""),
         }
         with httpx.Client(
             base_url=os.environ.get("CHEZACASH_SMS_API_BASE_URL", ""),
