@@ -40,11 +40,11 @@ class BTOBET:
             "Email": None,
             "UserID": None,
             "Currency": os.getenv("CURRENCY"),
-            "PspID": payment.mpesa_ref_number,
+            "PspId": payment.mpesa_ref_number,
             "Language": "en",
             "WithdrawalID": None,
-            "PosID": None,
-            "CashierID": None,
+            "PosId": None,
+            "CashierId": None,
         }
 
     @staticmethod
