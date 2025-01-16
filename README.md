@@ -5,8 +5,6 @@ A simple wrapper (API) that sits between [MPESA](https://www.safaricom.co.ke/per
 
 TODO:
 
-- [ ] B2B flow
-- [ ] B2C flow
 - [ ] C2B (partially, the **Broker** has been implemented)
 - [ ] Unit Tests
 - [ ] CI/CD (Github Actions or/and GitLab CI)
